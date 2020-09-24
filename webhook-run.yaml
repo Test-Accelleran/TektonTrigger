@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: create-webhook-run
+spec:
+  taskRef:
+    name: create-webhook
+  params:
+  - name: GitHubOrg
+    value: "Test-Accelleran"
+  - name: GitHubUser
+    value: "lcoriton-acc"
+  - name: GitHubRepo
+    value: "TektonTrigger"
+  - name: GitHubSecretName
+    value: webhook-secret
+  - name: GitHubAccessTokenKey
+    value: token
+  - name: GitHubSecretStringKey
+    value: secret
+  - name: ExternalDomain
+    value: event-listener.18.134.21.69.nip.io 
+  timeout: 1000s
+  serviceAccountName: tekton-triggers-createwebhook
